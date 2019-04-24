@@ -3,19 +3,14 @@
 <html lang="en">
 	<head>
 		<%@ include file="/client/inc/style.jsp" %>
-
 	</head>
-
-
 	<body>
-		
 		<div id="site-content">
 			<!-- Top -->
 			<%@ include file="/client/inc/top.jsp" %>
 			<main class="main-content">
 				<div class="container">
-					<div class="page">
-						
+					<div class="page">						
 						<table class="cart">
 							<thead>
 								<tr>
@@ -39,7 +34,7 @@
 									</td>
 									<td class="product-price">$150.00</td>
 									<td class="product-qty">
-				
+										-20%
 									</td>
 									<td class="product-total">$150.00</td>
 									<td class="action"><a href="#"></a></td>
@@ -49,8 +44,8 @@
 						</table> <!-- .cart -->
 
 						<div class="cart-total">
-							<p><strong>Subtotal:</strong> $650.00</p>
-							<p class="total"><strong>Total</strong><span class="num">$600.00</span></p>
+							<p><strong>할인 전 금액</strong>59000원</p>
+							<p class="total"><strong>결제 금액</strong><span class="num">39000원</span></p>
 							<p>
 								<a href="#" class="button muted">쇼핑 계속하기</a>
 								<a href="#" class="button">결제하기</a>

@@ -3,13 +3,9 @@
 <html lang="en">
 	<head>
 		<%@ include file="/client/inc/style.jsp" %>
-
 	</head>
-
-
 	<body>
-		
-		<div id="site-content">
+			<div id="site-content">
 			<!-- Top -->
 			<%@ include file="/client/inc/top.jsp" %>
 			
@@ -35,25 +31,7 @@
 										<option value="#">Strategy</option>
 									</select>
 								</span>
-								<span>
-									<label>Show:</label>
-									<select>
-										<option value="#">8</option>
-										<option value="#">16</option>
-										<option value="#">24</option>
-									</select>
-								</span>
 							</div> <!-- .filter -->
-
-							<div class="pagination">
-								<a href="#" class="page-number"><img src="../images/left.png" style="width:20px"><i class="fa fa-angle-left"></i></a>
-								<span class="page-number current">1</span>
-								<a href="#" class="page-number">2</a>
-								<a href="#" class="page-number">3</a>
-								<a href="#" class="page-number">...</a>
-								<a href="#" class="page-number">12</a>
-								<a href="#" class="page-number"><img src="../images/right.png" style="width:20px"><i class="fa fa-angle-right"></i></a>
-							</div> <!-- .pagination -->
 						</div> <!-- .filter-bar -->
 						
 						<div class="product-list">
@@ -65,13 +43,9 @@
 										<h3 class="product-title"><a href="#">GTA5</a></h3>
 										<p>Lorem ipsum dolor sit consectetur adipiscing elit do eiusmod tempor...</p>
 										<a href="#" class="button">Add to cart</a>
-										
 									</div>
-								</div> <!-- .product -->
-
-								
+								</div> <!-- .product -->								
 						</div> <!-- .product-list -->
-
 						<div class="pagination-bar">
 							<div class="pagination">
 								<a href="#" class="page-number"><img src="../images/left.png" style="width:20px"></a>
@@ -86,15 +60,6 @@
 					</div>
 				</div> <!-- .container -->
 			</main> <!-- .main-content -->
-
-			<!-- bottom -->
-			
-		</div>
-
-		<div class="overlay"></div>
-
-		
-		
 	</body>
 
 </html>
