@@ -1,4 +1,9 @@
+<%@page import="game.model.domain.Member"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@include file="/client/inc/style.jsp" %>
+<%
+	Member member=(Member)session.getAttribute("member");
+%>
 <script>
 $(function(){
 	$("#searchGame").keydown(function(key) {
@@ -44,11 +49,15 @@ function popup(){
 		</a>
 		<!-- #branding -->
 		<div class="right-section pull-right" style="float: right">
-			<a href="/client/cart/cart.jsp" class="cart"><i class="icon-cart"></i>Cart</a> <a
-				href="/client/login/index.jsp">Login/Register</a>
+			<a href="/client/cart/cart.jsp" class="cart"><i class="icon-cart"></i>Cart</a>
+			<%if(member==null){ %>
+			<a href="/client/login/index.jsp">Login/Register</a>
+			<%}else{ %>
+			<a><%=member.getNick() %>님 환영합니다</a>
+			<a href="/client/login/logout.jsp">Logout</a>
+			<%} %>
 		</div>
 		<!-- .right-section -->
-
 		<div class="main-navigation">
 			<button class="toggle-menu">
 				<i class="fa fa-bars"></i>

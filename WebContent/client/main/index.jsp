@@ -28,7 +28,7 @@
 				str+="<small class='slide-subtitle'>"+result[i].event_discount+"%</small>";
 				str+="<p name='select"+result[i].event_id+"'>";
 				str+="</p>"
-				str+="<a href='#' class='button' id='eventDirect'>이벤트 페이지 바로가기</a>";
+				str+="<a href='/client/event/index.jsp' class='button' id='eventDirect'>이벤트 페이지 바로가기</a>";
 				str+="</div>";
 				str+="<img src='/data/event/"+result[i].event_img+"' class='slide-image' width='400px'>";
 				str+="</div>";

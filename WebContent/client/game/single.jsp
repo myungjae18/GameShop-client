@@ -1,6 +1,9 @@
+<%@page import="game.model.domain.Member"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/client/inc/style.jsp"%>
-<%int game_id=Integer.parseInt(request.getParameter("game_id"));%>
+<%
+	int game_id=Integer.parseInt(request.getParameter("game_id"));
+%>
 <html>
 <head>
 <script>
@@ -129,10 +132,10 @@ function getImage(){
 					<hr>
 					<br>
 					<div>
-						<h1 id="my_nick">nivelian</h1>
+						<h1 id="my_nick"><%=member.getNick() %></h1>
 						<h2>
-							<a>추천</a>/
-							<a>비추천</a>
+							<a style="color:blue">추천</a>/
+							<a style="color:red">비추천</a>
 						</h2>
 						<textarea placeholder="댓글 입력...."></textarea>
 						<br>
