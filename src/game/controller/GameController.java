@@ -77,8 +77,8 @@ public class GameController {
 	public ModelAndView updateGame(Game game, HttpServletRequest request) {
 		Category category = categoryService.select(game.getCategory_id());
 		game.setCategory(category);
-		
-		if (game.getMyfile_name()==null) {
+
+		if (game.getMyfile_name() == null) {
 			String[] myFile_name = new String[game.getMyfile().length];
 			for (int i = 0; i < game.getMyfile().length; i++) {
 				String realPath = request.getServletContext().getRealPath("/data/game");
@@ -102,7 +102,7 @@ public class GameController {
 				}
 			}
 			gameService.updateAll(game, myFile_name);
-			
+
 		} else {
 			gameService.update(game);
 		}

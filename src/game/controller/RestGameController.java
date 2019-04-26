@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import game.common.board.Pager;
 import game.common.exception.DataNotFoundException;
@@ -62,5 +63,41 @@ public class RestGameController {
 	@RequestMapping(value = "/rest/admin/searchgame", method = RequestMethod.GET)
 	public Game searchGames(@RequestParam("game_name") String game_name) {
 		return gameService.search(game_name);
+	}
+
+	@RequestMapping(value = "/rest/client/game/search", method = RequestMethod.GET)
+	public Game searchGame(@RequestParam("game_name") String game_name) {
+		return gameService.search(game_name);
+	}
+
+	@RequestMapping(value = "/rest/client/games/{game_id}", method = RequestMethod.GET)
+	public Game clientGetGame(@PathVariable("game_id") int game_id) {
+		return gameService.select(game_id);
+	}
+
+	@RequestMapping(value = "/rest/client/games", method = RequestMethod.GET)
+	public List clientGetGames() {
+		return gameService.selectAll();
+	}
+
+	@RequestMapping(value = "/rest/client/game/images", method = RequestMethod.GET)
+	public List clientGetGameImage(@RequestParam("game_id") int game_id) {
+		return gameService.selectImg(game_id);
+	}
+
+	@RequestMapping(value = "/rest/client/game/sort", method = RequestMethod.GET)
+	public List sortGames(int category_id) {
+		List gameList = null;
+		if (category_id == 0) {
+			gameList = gameService.selectAll();
+		} else {
+			gameList = gameService.selectByCategory(category_id);
+		}
+		return gameList;
+	}
+	
+	@RequestMapping(value = "/rest/client/gameList", method = RequestMethod.GET)
+    public List mainGameList() {
+		return gameService.selectAll();
 	}
 }

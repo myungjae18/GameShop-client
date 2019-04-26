@@ -11,6 +11,8 @@ public interface MemberService {
 	public void update(Member member);
 	public void delete(int member_id);
 	public Member search(String id);
+	public Member checkId(String id);
 	public Member checkNick(String nick);
 	public Member checkEmail(String email);
+	public Member loginCheck(Member member);
 }

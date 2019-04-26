@@ -113,4 +113,8 @@ public class EventServiceImpl implements EventService {
 		}
 		return event;
 	}
+	
+	public List eventGameList() {
+		return event_GameDAO.selectAll();
+	}
 }

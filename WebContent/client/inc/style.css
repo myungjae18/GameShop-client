@@ -240,6 +240,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 textarea {
   overflow: auto;
   vertical-align: top;
+  width:100%;
+  height:200px;
 }
 
 table {
@@ -311,7 +313,7 @@ form textarea {
 /*
  * Reusable Components Style
  */
-.button, form input[type="submit"], form button, form input[type="reset"] {
+.button, form input[type="submit"], form button, form input[type="reset"], input[type="button"] {
   border: none;
   background: #45b77d;
   color: white;
@@ -2203,6 +2205,15 @@ form textarea {
   -webkit-transition: .3s ease;
           transition: .3s ease;
 }
+
+input[type=text]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
 .search-form input:hover, .search-form input:focus {
   background-color: white;
 }

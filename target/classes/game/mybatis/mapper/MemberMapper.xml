@@ -36,4 +36,8 @@
 	<select id="checkEmail" parameterType="String" resultType="Member">
 		<include refid="sql_select"/> where email=#{email}
 	</select>
+	
+	<select id="loginCheck" parameterType="Member" resultType="Member">
+		<include refid="sql_select"/> where id=#{id} and pass=#{pass}
+	</select>	
 </mapper>

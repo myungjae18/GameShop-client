@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import game.common.exception.AccountNotFoundException;
 import game.common.exception.DataNotFoundException;
 import game.common.exception.DeleteFailException;
 import game.common.exception.EditFailException;
@@ -55,11 +56,23 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 
+	public Member checkId(String id) {
+		return memberDAO.search(id);
+	}
+
 	public Member checkNick(String nick) {
 		return memberDAO.checkNick(nick);
 	}
 
 	public Member checkEmail(String email) {
 		return memberDAO.checkEmail(email);
+	}
+
+	public Member loginCheck(Member member) throws AccountNotFoundException {
+		Member member1 = memberDAO.loginCheck(member);
+		if (member1 == null) {
+			throw new AccountNotFoundException("일치하는 정보가 없습니다");
+		}
+		return member1;
 	}
 }

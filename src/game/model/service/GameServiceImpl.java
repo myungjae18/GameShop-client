@@ -109,4 +109,9 @@ public class GameServiceImpl implements GameService {
 	public List selectImg(int game_id) {
 		return game_imgDAO.selectImg(game_id);
 	}
+
+	@Override
+	public List selectByCategory(int category_id) {
+		return gameDAO.selectByCategory(category_id);
+	}
 }

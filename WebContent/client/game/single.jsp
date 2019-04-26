@@ -1,55 +1,151 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<%@ include file="/client/inc/style.jsp" %>
-	<body>
-		<div id="site-content">
-			<!-- Top -->
-			<%@ include file="/client/inc/top.jsp" %>
-				<main class="main-content">
-				<div class="container">
-					<div class="page">
-						
-						<div class="entry-content">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="product-images">
-										<!-- 이미지들 -->
-										<figure class="large-image">
-											<a href="dummy/image-1.jpg"><img src="../images/need.jpg"></a>
-										</figure>
-										<div class="thumbnails">
-											<a href="dummy/image-2.jpg"><img src="../images/kill.jpg"></a>
-											<a href="dummy/image-3.jpg"><img src="../images/gta.jpg"></a>
-											<a href="dummy/image-4.jpg"><img src="../images/need.jpg"></a>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<h2 class="entry-title">Need for Speed Rivals</h2>
-									<small class="price">39000원</small>
-										<!-- p 태그는 게임설명..  -->
-									<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-									<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
-									<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.</p>
+<%@ include file="/client/inc/style.jsp"%>
+<%int game_id=Integer.parseInt(request.getParameter("game_id"));%>
+<html>
+<head>
+<script>
+$(function(){
+	gameInfo();
+	getImage();
+})
 
-									<div class="addtocart-bar">
-										<form action="#">
-											<input type="submit" value="Add to cart">
-										</form>										
-									</div>
+function gameInfo(){
+	$.ajax({
+		type:"get",
+		url:"/rest/client/games/<%=game_id%>",
+		success:function(result){
+			$(".entry-title").html(result.game_name);
+			$(".price").html(result.game_price+"원");
+			$("#detail_first").html(result.game_detail);
+		}
+	});
+}
+
+function getImage(){
+	$.ajax({	     
+		url : "/rest/client/game/images",
+		type : "get",
+		data : {
+			game_id : <%=game_id%>
+		},
+		success : function(result) {
+				switch (result.length) {
+				case 1:
+					$("#image_first").attr({
+						'src' : '/data/game/' + result[0].img_filename
+					});
+					break;
+				case 2:
+					$("#image_first").attr({
+						'src' : '/data/game/' + result[0].img_filename
+					});
+					$("#image_second").attr({
+						'src' : '/data/game/' + result[1].img_filename
+					});
+					break;
+				case 3:
+					$("#image_first").attr({
+						'src' : '/data/game/' + result[0].img_filename
+					});
+					$("#image_second").attr({
+						'src' : '/data/game/' + result[1].img_filename
+					});
+					$("#image_third").attr({
+						'src' : '/data/game/' + result[2].img_filename
+					});
+					break;
+				case 4:
+					$("#image_first").attr({
+						'src' : '/data/game/' + result[0].img_filename
+					});
+					$("#image_second").attr({
+						'src' : '/data/game/' + result[1].img_filename
+					});
+					$("#image_third").attr({
+						'src' : '/data/game/' + result[2].img_filename
+					});
+					$("#image_fourth").attr({
+						'src' : '/data/game/' + result[3].img_filename
+					});
+					break;
+				default:
+					$("#image_first").attr({
+						'src' : '/data/game/' + result[0].img_filename
+					});
+					$("#image_second").attr({
+						'src' : '/data/game/' + result[1].img_filename
+					});
+					$("#image_third").attr({
+						'src' : '/data/game/' + result[2].img_filename
+					});
+					$("#image_fourth").attr({
+						'src' : '/data/game/' + result[3].img_filename
+					});	
+				}
+			}
+		});
+	}
+</script>
+<%@ include file="/client/inc/style.jsp"%>
+<body>
+	<div id="site-content" style="background-color:#2b2b2b">
+		<!-- Top -->
+		<%@ include file="/client/inc/top.jsp"%>
+		<main class="main-content">
+		<div class="container">
+			<div class="page">
+				<div class="entry-content">
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<div class="product-images">
+								<!-- 이미지들 -->
+								<figure class="large-image">
+									<a href="dummy/image-1.jpg"><img id="image_first"></a>
+								</figure>
+								<div class="thumbnails">
+									<a href="dummy/image-2.jpg"><img id="image_second"></a> <a
+										href="dummy/image-3.jpg"><img id="image_third"></a> <a
+										href="dummy/image-4.jpg"><img id="image_fourth"></a>
 								</div>
 							</div>
-						</div>					
+						</div>
+						<div class="col-sm-6 col-md-8">
+							<h2 class="entry-title"></h2>
+							<small class="price"></small>
+							<!-- p 태그는 게임설명..  -->
+							<p id="detail_first"></p>
+							<p id="detail_second"></p>
+							<p id="detail_third"></p>
+
+							<!-- <div class="addtocart-bar" style="width: 30%"> -->
+								<form action="#">
+									<input type="button" value="Add to cart">
+									<input type="button" value="Buy This">
+								</form>
+							<!-- </div> -->
+						</div>
 					</div>
-				</div> <!-- .container -->
-			</main> <!-- .main-content -->
-			<!-- bottom -->
+					<br>
+					<hr>
+					<br>
+					<div>
+						<h1 id="my_nick">nivelian</h1>
+						<h2>
+							<a>추천</a>/
+							<a>비추천</a>
+						</h2>
+						<textarea placeholder="댓글 입력...."></textarea>
+						<br>
+						<br>
+						<input type="button" value="댓글 등록" />
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- 댓글 -->
-		<div>
-		앙
-		</div>
-	</body>
+		<!-- .container --> </main>
+		<!-- .main-content -->
+		<!-- bottom -->
+	</div>
+	<!-- 댓글 -->
+</body>
 </html>

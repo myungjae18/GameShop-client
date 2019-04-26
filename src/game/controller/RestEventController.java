@@ -49,6 +49,21 @@ public class RestEventController {
 	public Event search(@RequestParam("event_name") String event_name) {
 		return eventService.search(event_name);
 	}
+	
+	@RequestMapping(value = "/rest/client/eventGames", method = RequestMethod.GET)
+	   public List getEventGameList() {
+	      return eventService.eventGameList();
+	   }
+	
+	@RequestMapping(value = "/rest/client/events", method = RequestMethod.GET)
+	public List getClientEvent() {
+		return eventService.selectAll();
+	}
+
+	@RequestMapping(value = "/rest/client/event/games", method = RequestMethod.GET)
+	public List getClientEventGame(@RequestParam("event_id") int event_id) {
+		return eventService.selectGame(event_id);
+	}
 
 	@ExceptionHandler(DataNotFoundException.class)
 	@ResponseBody

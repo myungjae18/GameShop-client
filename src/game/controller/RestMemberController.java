@@ -58,6 +58,21 @@ public class RestMemberController {
 		return memberService.checkEmail(email);
 	}
 
+	@RequestMapping(value = "/rest/client/member/checkId", method = RequestMethod.GET)
+	public Member checkClientId(@RequestParam("id") String id) {
+		return memberService.checkId(id);
+	}
+
+	@RequestMapping(value = "/rest/client/member/checkNick", method = RequestMethod.GET)
+	public Member checkClientNick(@RequestParam("nick") String nick) {
+		return memberService.checkNick(nick);
+	}
+
+	@RequestMapping(value = "/rest/client/member/checkEmail", method = RequestMethod.GET)
+	public Member checkClientEmail(@RequestParam("email") String email) {
+		return memberService.checkEmail(email);
+	}
+
 	@ExceptionHandler(DataNotFoundException.class)
 	@ResponseBody
 	public String dataNotFoundHandler(DataNotFoundException e) {

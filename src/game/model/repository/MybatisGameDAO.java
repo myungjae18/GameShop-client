@@ -36,4 +36,8 @@ public class MybatisGameDAO implements GameDAO {
 	public Game search(String game_name) {
 		return sessionTemplate.selectOne("Game.search", game_name);
 	}
+
+	public List selectByCategory(int category_id) {
+		return sessionTemplate.selectList("Game.selectByCategory", category_id);
+	}
 }

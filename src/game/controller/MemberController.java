@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import game.common.exception.AccountNotFoundException;
 import game.common.exception.DataNotFoundException;
 import game.common.exception.DeleteFailException;
 import game.common.exception.EditFailException;
@@ -46,6 +47,21 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/client/member/login", method = RequestMethod.POST)
+	public ModelAndView login(Member member, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("client/main/index");
+		Member obj = memberService.loginCheck(member);
+		request.getSession().setAttribute("member", obj);
+		return mav;
+	}
+
+	@RequestMapping(value = "/client/member/register", method = RequestMethod.POST)
+	public ModelAndView registMember(Member member) {
+		ModelAndView mav = new ModelAndView("client/login/index");
+		memberService.insert(member);
+		return mav;
+	}
+
 	@ExceptionHandler(DataNotFoundException.class)
 	@ResponseBody
 	public String dataNotFoundHandler(DataNotFoundException e) {
@@ -68,5 +84,13 @@ public class MemberController {
 	@ResponseBody
 	public String deleteFailHandler(DeleteFailException e) {
 		return "{\"resultCode\":0, \"msg\":\"" + e.getMessage() + "\"}";
+	}
+
+	@ExceptionHandler(AccountNotFoundException.class)
+	public ModelAndView handleException(AccountNotFoundException e) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("client/login/loginFail");
+		mav.addObject("err", e);
+		return mav;
 	}
 }

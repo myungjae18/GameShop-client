@@ -41,6 +41,7 @@ public class EventController {
 
 	@RequestMapping(value = "/admin/event/regist", method = RequestMethod.POST)
 	public ModelAndView registEvent(Event event, HttpServletRequest request) {
+		System.out.println(event.getEvent_name());
 		MultipartFile myFile_img = event.getMyFile_img();
 		String filename_img = myFile_img.getOriginalFilename();
 		MultipartFile myFile_icon = event.getMyFile_icon();

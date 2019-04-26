@@ -9,10 +9,9 @@ import org.springframework.stereotype.Repository;
 import game.model.domain.Member;
 
 @Repository
-public class MybatisMemberDAO implements MemberDAO{
+public class MybatisMemberDAO implements MemberDAO {
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
-	
 
 	public int insert(Member member) {
 		return 0;
@@ -22,16 +21,13 @@ public class MybatisMemberDAO implements MemberDAO{
 		return sessionTemplate.selectList("Member.selectAll");
 	}
 
-	
 	public Member select(int member_id) {
 		return sessionTemplate.selectOne("Member.select", member_id);
 	}
 
-
 	public int update(Member member) {
 		return sessionTemplate.update("Member.update", member);
 	}
-
 
 	public int delete(int member_id) {
 		return sessionTemplate.delete("Member.delete", member_id);
@@ -47,5 +43,9 @@ public class MybatisMemberDAO implements MemberDAO{
 
 	public Member checkEmail(String email) {
 		return sessionTemplate.selectOne("Member.checkEmail", email);
+	}
+
+	public Member loginCheck(Member member) {
+		return sessionTemplate.selectOne("Member.loginCheck", member);
 	}
 }

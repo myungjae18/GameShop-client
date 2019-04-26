@@ -13,4 +13,5 @@ public interface GameService {
    public void delete(int game_id);
    public Game search(String game_name);
    public List selectImg(int game_id);
+   public List selectByCategory(int category_id);
 }

@@ -13,4 +13,5 @@ public interface MemberDAO {
 	public Member search(String id);
 	public Member checkNick(String nick);
 	public Member checkEmail(String email);
+	public Member loginCheck(Member member);
 }

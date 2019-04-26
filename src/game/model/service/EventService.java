@@ -12,4 +12,5 @@ public interface EventService {
 	public void delete(int event_id);
 	public List selectGame(int event_id);
 	public Event search(String event_name);
+	public List eventGameList();
 }
