@@ -113,17 +113,19 @@ function getImage(){
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-8">
-							<h2 class="entry-title"></h2>
-							<small class="price"></small>
-							<!-- p 태그는 게임설명..  -->
-							<p id="detail_first"></p>
-							<p id="detail_second"></p>
-							<p id="detail_third"></p>
-
+							<div>
+								<h2 class="entry-title"></h2>
+								<small class="price"></small>
+								<!-- p 태그는 게임설명..  -->
+								<p id="detail_first"></p>
+								<p id="detail_second"></p>
+								<p id="detail_third"></p>
+							</div>
+							<h3 style="color:white">평점 : 3.3</h3>
 							<!-- <div class="addtocart-bar" style="width: 30%"> -->
-								<form action="#">
+								<form>
 									<input type="button" value="Add to cart">
-									<input type="button" value="Buy This">
+									<input type="button" value="Buy This" style="background-color:orange">
 								</form>
 							<!-- </div> -->
 						</div>
@@ -132,7 +134,11 @@ function getImage(){
 					<hr>
 					<br>
 					<div>
+						<%if(member!=null){ %>
 						<h1 id="my_nick"><%=member.getNick() %></h1>
+						<%}else{ %>
+						<h1 id="need-login" style="color:orange;">로그인을 해주세요.</h1>
+						<%} %>
 						<h2>
 							<a style="color:blue">추천</a>/
 							<a style="color:red">비추천</a>

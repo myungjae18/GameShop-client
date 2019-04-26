@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/client/inc/style.jsp"%>
+<%@ include file="/client/inc/top.jsp"%>
 <html>
 <head>
 <script>
@@ -23,7 +24,7 @@ function getGames(){
 				str+="<a href='single.jsp?game_id="+result[i].game_id+"'>"+result[i].game_name+"</a>";
 				str+="</h3>";
 				str+="<p>"+result[i].game_price+"원</p>";
-				str+="<a href=''#' class='button'>Add to cart</a>";
+				str+="<a onclick='cart("+result[i].game_id+")' class='button'>Add to cart</a>";
 				str+="</div>";
 				str+="</div>";
 				getImages(result[i].game_id);				
@@ -72,7 +73,7 @@ function sort(){
 				str+="<a href='single.jsp?game_id="+result[i].game_id+"'>"+result[i].game_name+"</a>";
 				str+="</h3>";
 				str+="<p>"+result[i].game_price+"원</p>";
-				str+="<a href=''#' class='button'>Add to cart</a>";
+				str+="<a onclick='cart("+result[i].game_id+")' class='button'>Add to cart</a>";
 				str+="</div>";
 				str+="</div>";
 				getImages(result[i].game_id);				
@@ -81,22 +82,30 @@ function sort(){
 		}
 	});
 }
+
+function cart(game_id){
+	<%if(member==null){%>
+	alert("로그인이 필요한 서비스입니다");
+	<%}else{%>
+	location.href="/client/pay/cart.jsp?game_id="+game_id;
+	<%}%>
+}
 </script>
 </head>
 <body>
 	<div id="site-content" style="background-color:#2b2b2b">
 		<!-- Top -->
-		<%@ include file="/client/inc/top.jsp"%>
 		<main class="main-content">
 		<div class="container">
 			<div class="page">
 				<div class="filter-bar">
 					<div class="filter">
 						<span> <label>정렬 :</label> 
-						<select>
+						<select id="sortList">
 								<option value="1">인기 순</option>
 								<option value="2">높은 점수 순</option>
 								<option value="3">가격 순</option>
+								<option value="4">최신 상품 순</option>
 						</select>
 						</span>
 						<span><label>카테고리 :</label>

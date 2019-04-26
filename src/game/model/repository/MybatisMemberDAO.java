@@ -14,7 +14,7 @@ public class MybatisMemberDAO implements MemberDAO {
 	private SqlSessionTemplate sessionTemplate;
 
 	public int insert(Member member) {
-		return 0;
+		return sessionTemplate.insert("Member.insert", member);
 	}
 
 	public List selectAll() {

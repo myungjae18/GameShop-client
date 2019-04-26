@@ -162,12 +162,12 @@
 			alert("이메일 중복체크를 해주세요.");
 			return;
 		}
-		alert("회원가입 완료");
 		$("#register").attr({
 			method : "post",
 			action : "/client/member/register"
 		});
 		$("#register").submit();
+		alert("회원가입 완료");
 	}
 </script>
 </head>

@@ -49,7 +49,7 @@ function popup(){
 		</a>
 		<!-- #branding -->
 		<div class="right-section pull-right" style="float: right">
-			<a href="/client/cart/cart.jsp" class="cart"><i class="icon-cart"></i>Cart</a>
+			<a href="/client/pay/cart.jsp" class="cart"><i class="icon-cart"></i>Cart</a>
 			<%if(member==null){ %>
 			<a href="/client/login/index.jsp">Login/Register</a>
 			<%}else{ %>
@@ -67,7 +67,7 @@ function popup(){
 					href="../main/index.jsp"><i class="icon-home"></i></a></li>
 				<li class="menu-item"><a href="/client/game/products.jsp">Games</a></li>
 				<li class="menu-item"><a href="/client/event/index.jsp">Events</a></li>
-				<li class="menu-item"><a href="/client/cart/cart.jsp">Cart</a></li>
+				<li class="menu-item"><a href="/client/pay/cart.jsp">Cart</a></li>
 				<li class="menu-item"><a href="/client/myPage/index.jsp">MyPage</a></li>
 			</ul>
 			<!-- .menu -->

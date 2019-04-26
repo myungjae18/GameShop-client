@@ -18,6 +18,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDAO;
 
 	public void insert(Member member) {
+		memberDAO.insert(member);
 	}
 
 	public List selectAll() {

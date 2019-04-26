@@ -3,6 +3,19 @@
 <html>
 <head>
 <%@ include file="/client/inc/style.jsp"%>
+<script>
+$(function(){
+	<%if(session.getAttribute("member")==null){%>
+		alert("로그인이 필요한 서비스입니다.");
+		history.back();
+	<%}	%>
+	<%if(request.getParameter("game_id")==null){%>
+		getCart();
+	<%}else{%>
+		getCartByGame_id();
+	<%}%>
+})
+</script> 
 </head>
 <body>
 	<div id="site-content">

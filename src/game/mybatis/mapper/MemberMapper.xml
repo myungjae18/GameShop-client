@@ -7,6 +7,11 @@
 	<sql id="sql_select">
 		select member_id, id, pass, name, nick, email from member
 	</sql>
+	
+	<insert id="insert" parameterType="Member">
+		insert into member(member_id, id, pass, name, nick, email)
+		values(seq_member.nextval, #{id}, #{pass}, #{name}, #{nick}, #{email})
+	</insert>
 
 	<select id="selectAll" resultType="Member">
 		<include refid="sql_select"/> order by member_id desc

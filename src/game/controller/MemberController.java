@@ -57,8 +57,8 @@ public class MemberController {
 
 	@RequestMapping(value = "/client/member/register", method = RequestMethod.POST)
 	public ModelAndView registMember(Member member) {
-		ModelAndView mav = new ModelAndView("client/login/index");
 		memberService.insert(member);
+		ModelAndView mav = new ModelAndView("client/login/index");
 		return mav;
 	}
 
