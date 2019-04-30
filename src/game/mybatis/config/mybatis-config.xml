@@ -11,6 +11,8 @@
 		<typeAlias type="game.model.domain.Member" alias="Member" />
 		<typeAlias type="game.model.domain.Event" alias="Event" />
 		<typeAlias type="game.model.domain.Event_Game" alias="Event_Game" />
+		<typeAlias type="game.model.domain.Comments" alias="Comments" />
+		<typeAlias type="game.model.domain.Cart" alias="Cart" />
 	</typeAliases>
 
 	<mappers>
@@ -21,5 +23,7 @@
 		<mapper resource="game/mybatis/mapper/MemberMapper.xml" />
 		<mapper resource="game/mybatis/mapper/EventMapper.xml" />
 		<mapper resource="game/mybatis/mapper/Event_GameMapper.xml" />
+		<mapper resource="game/mybatis/mapper/CommentsMapper.xml" />
+		<mapper resource="game/mybatis/mapper/CartMapper.xml" />
 	</mappers>
 </configuration>

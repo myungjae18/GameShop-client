@@ -24,7 +24,8 @@ function getGames(){
 				str+="<a href='single.jsp?game_id="+result[i].game_id+"'>"+result[i].game_name+"</a>";
 				str+="</h3>";
 				str+="<p>"+result[i].game_price+"원</p>";
-				str+="<a onclick='cart("+result[i].game_id+")' class='button'>Add to cart</a>";
+				str+="<a onclick='cart("+result[i].game_id+")' class='button'>Add to cart</a>&nbsp";
+				str+="<a href='/client/pay/pay.jsp?game_id="+result[i].game_id+"' class='button' style='background-color:orange'>Buy This</a>";
 				str+="</div>";
 				str+="</div>";
 				getImages(result[i].game_id);				

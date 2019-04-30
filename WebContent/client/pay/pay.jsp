@@ -7,7 +7,7 @@
 $(function(){
 	<%if(session.getAttribute("member")==null){%>
 		alert("로그인이 필요한 서비스입니다.");
-		history.back();
+		location.href="/client/login/index.jsp";
 	<%}	%>
 	<%if(request.getParameter("game_id")==null){%>
 		alert("비정상적인 접근입니다");

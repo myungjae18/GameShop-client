@@ -12,8 +12,7 @@
 	});
 
 	function getEvent() {
-		$
-				.ajax({
+		$.ajax({
 					url : "/rest/client/events",
 					type : "get",
 					success : function(result) {
@@ -74,9 +73,9 @@
 							str += "<div class='inner-product'>";
 							str += "<div class='figure-image'>";
 							gameimage(result[i].game_id);
-							str += "<a href=single.html><img name='"+result[i].game_id+"'></a>";
+							str += "<a href='/client/game/single.jsp?game_id="+result[i].game_id+"'><img name='"+result[i].game_id+"'></a>";
 							str += "</div>"
-							str += "<h3 class='product-title'><a href=#>"
+							str += "<h3 class='product-title'><a href='/client/game/single.jsp?game_id="+result[i].game_id+"'>"
 									+ result[i].game_name + "</a></h3>";
 							str += "<small class='price'>"
 									+ result[i].game_price + "원</small>";
@@ -121,9 +120,9 @@
 							str += "</div>";
 							str += "<div class='figure-image'>";
 							gameimage(result[i].game.game_id);
-							str += "<a href='single.html'><img name='"+result[i].game.game_id+"'></a>";
+							str += "<a href='/client/game/single.jsp?game_id="+result[i].game.game_id+"'><img name='"+result[i].game.game_id+"'></a>";
 							str += "</div>";
-							str += "<h3 class='product-title'><a href='#'>"
+							str += "<h3 class='product-title'><a href='/client/game/single.jsp?game_id="+result[i].game.game_id+"'>"
 									+ result[i].game.game_name + "</a></h3>";
 							str += "<small class='price'><del>"
 									+ result[i].game.game_price + "원</del>";

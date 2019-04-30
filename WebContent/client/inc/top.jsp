@@ -41,10 +41,10 @@ function popup(){
 </script>
 <div class="site-header">
 	<div class="container">
-		<a href="../main/index.jsp" id="branding"> <img
+		<a href=" /client/main/index.jsp" id="branding"> <img
 			src="../images/logo.png" class="logo">
 			<div class="logo-text">
-				<h1 class="site-title">은기컴퍼니</h1>
+				<h1 class="site-title">게임 샾</h1>
 			</div>
 		</a>
 		<!-- #branding -->

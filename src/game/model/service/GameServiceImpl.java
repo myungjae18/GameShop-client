@@ -9,8 +9,10 @@ import game.common.exception.DataNotFoundException;
 import game.common.exception.DeleteFailException;
 import game.common.exception.EditFailException;
 import game.common.exception.RegistFailException;
+import game.model.domain.Comments;
 import game.model.domain.Game;
 import game.model.domain.Game_Img;
+import game.model.repository.CommentsDAO;
 import game.model.repository.GameDAO;
 import game.model.repository.Game_ImgDAO;
 
@@ -20,8 +22,10 @@ public class GameServiceImpl implements GameService {
 	private GameDAO gameDAO;
 	@Autowired
 	private Game_ImgDAO game_imgDAO;
+	@Autowired
+	private CommentsDAO commentsDAO;
 
-	public void insert(Game game, String[] myFile_name) throws RegistFailException {
+	public void registGame(Game game, String[] myFile_name) throws RegistFailException {
 		int result1 = 0;
 		int result2 = 0;
 
@@ -41,11 +45,11 @@ public class GameServiceImpl implements GameService {
 		}
 	}
 
-	public List selectAll() {
+	public List selectAllGames() {
 		return gameDAO.selectAll();
 	}
 
-	public Game select(int game_id) throws DataNotFoundException {
+	public Game selectGame(int game_id) throws DataNotFoundException {
 		Game game = gameDAO.select(game_id);
 		if (game == null) {
 			throw new DataNotFoundException("게임 조회 실패");
@@ -53,15 +57,15 @@ public class GameServiceImpl implements GameService {
 		return game;
 	}
 
-	public void update(Game game) throws EditFailException {
-		int result=0;
+	public void editGame(Game game) throws EditFailException {
+		int result = 0;
 		result = gameDAO.update(game);
 		if (result == 0) {
 			throw new EditFailException("게임 정보 수정 실패");
 		}
 	}
 
-	public void updateAll(Game game, String[] myFile_name)
+	public void editAllGames(Game game, String[] myFile_name)
 			throws DeleteFailException, RegistFailException, EditFailException {
 		int result1 = 0;
 		int result2 = 0;
@@ -87,7 +91,7 @@ public class GameServiceImpl implements GameService {
 		}
 	}
 
-	public void delete(int game_id) throws DeleteFailException {
+	public void deleteGame(int game_id) throws DeleteFailException {
 		int result1 = 0;
 		int result2 = 0;
 
@@ -102,16 +106,30 @@ public class GameServiceImpl implements GameService {
 		}
 	}
 
-	public Game search(String game_name) {
+	public Game searchGame(String game_name) {
 		return gameDAO.search(game_name);
 	}
 
-	public List selectImg(int game_id) {
+	public List selectGameImg(int game_id) {
 		return game_imgDAO.selectImg(game_id);
 	}
 
-	@Override
-	public List selectByCategory(int category_id) {
+	public List selectGameByCategory(int category_id) {
 		return gameDAO.selectByCategory(category_id);
+	}
+
+	public void registComment(Comments comments) throws RegistFailException {
+		int result = commentsDAO.insert(comments);
+		if (result == 0) {
+			throw new RegistFailException("코멘트 등록 실패");
+		}
+	}
+
+	public List selectAllComments(int game_id) throws DataNotFoundException {
+		List coList = commentsDAO.selectAllByGame(game_id);
+		if (coList == null) {
+			throw new DataNotFoundException("코멘트 조회 실패");
+		}
+		return coList;
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,8 +21,12 @@ import game.common.exception.DeleteFailException;
 import game.common.exception.EditFailException;
 import game.common.exception.RegistFailException;
 import game.common.file.FileManager;
+import game.model.domain.Cart;
 import game.model.domain.Category;
+import game.model.domain.Comments;
 import game.model.domain.Game;
+import game.model.domain.Member;
+import game.model.service.CartService;
 import game.model.service.CategoryService;
 import game.model.service.GameService;
 
@@ -32,12 +37,14 @@ public class GameController {
 	@Autowired
 	private GameService gameService;
 	@Autowired
+	private CartService cartService;
+	@Autowired
 	private FileManager fileManager;
 
 	@RequestMapping(value = "/admin/game", method = RequestMethod.GET)
-	public ModelAndView selectAll(HttpServletRequest request) {
+	public ModelAndView selectAllGames(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("admin/game/index");
-		List gameList = gameService.selectAll();
+		List gameList = gameService.selectAllGames();
 		mav.addObject("gameList", gameList);
 		return mav;
 	}
@@ -67,7 +74,7 @@ public class GameController {
 				e.printStackTrace();
 			}
 		}
-		gameService.insert(game, myFile_name);
+		gameService.registGame(game, myFile_name);
 
 		ModelAndView mav = new ModelAndView("admin/game/index");
 		return mav;
@@ -101,10 +108,10 @@ public class GameController {
 					e.printStackTrace();
 				}
 			}
-			gameService.updateAll(game, myFile_name);
+			gameService.editAllGames(game, myFile_name);
 
 		} else {
-			gameService.update(game);
+			gameService.editGame(game);
 		}
 
 		ModelAndView mav = new ModelAndView();
@@ -114,8 +121,43 @@ public class GameController {
 
 	@RequestMapping(value = "/admin/game/delete", method = RequestMethod.POST)
 	public ModelAndView deleteGame(int game_id) {
-		gameService.delete(game_id);
+		gameService.deleteGame(game_id);
 		ModelAndView mav = new ModelAndView("/admin/game/index");
+		return mav;
+	}
+
+	@RequestMapping(value = "/client/game/comments/regist", method = RequestMethod.POST)
+	public ModelAndView registComment(Comments comments, int member_id, int game_id) {
+		Game game = new Game();
+		Member member = new Member();
+
+		game.setGame_id(game_id);
+		member.setMember_id(member_id);
+		comments.setGame(game);
+		comments.setMember(member);
+
+		System.out.println(comments.getGame().getGame_id());
+
+		gameService.registComment(comments);
+		ModelAndView mav = new ModelAndView("redirect:/client/game/single.jsp");
+		mav.addObject("game_id", game_id);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/client/pay/cart/regist", method = RequestMethod.POST)
+	public ModelAndView registCart(@RequestParam int member_id, @RequestParam int game_id) {
+		Cart cart = new Cart();
+		Member member = new Member();
+		Game game = new Game();
+
+		member.setMember_id(member_id);
+		game.setGame_id(game_id);
+		cart.setMember(member);
+		cart.setGame(game);
+
+		cartService.insert(cart);
+		ModelAndView mav = new ModelAndView("/client/main/index");
 		return mav;
 	}
 
